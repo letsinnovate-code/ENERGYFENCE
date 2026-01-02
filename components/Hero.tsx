@@ -137,8 +137,8 @@ export default function Hero() {
             <h2
               className="whitespace-nowrap"
               style={{
-                fontSize: "clamp(18px, 3vw, 36px)",
-                lineHeight: "clamp(22px, 4vw, 42px)",
+                fontSize: "clamp(14px, 2vw, 18px)",
+                lineHeight: "clamp(18px, 2.5vw, 24px)",
               }}
             >
               Trusted by industry leaders:
