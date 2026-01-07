@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-gradient-to-b from-[#1C2530] to-[#050A0F] text-white">
+    <footer className="relative w-full bg-gradient-to-b from-[#050A0F] to-[#050A0F] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 sm:gap-12 mb-12 sm:mb-16">
