@@ -44,7 +44,7 @@ export default function Hero() {
             fontFamily: "proxima-nova, sans-serif",
           }}
         >
-          Our solutions &gt;
+          Our solutions <span className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-white/50 ml-1"><i className="ri-arrow-right-s-line text-xs"></i></span>
         </a>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-20 lg:gap-28 w-full h-full">

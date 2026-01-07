@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { ChevronRight, ChevronLeft, Heart, TrendingUp, TreePine, BookOpen, Home, Plane, Users, Gift, Plus, Check } from 'lucide-react';
+import { Heart, TrendingUp, TreePine, BookOpen, Home, Plane, Users, Gift, Plus, Check } from 'lucide-react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -96,7 +96,7 @@ export default function CareersPage() {
                         className="group inline-flex items-center gap-3 text-white hover:text-white/90 transition-colors"
                     >
                         <span className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 border border-white/30 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                            <i className="ri-arrow-right-s-line text-xl sm:text-2xl"></i>
                         </span>
                         <span className="text-[15px] sm:text-base font-medium">Learn more</span>
                     </Link>
@@ -119,7 +119,7 @@ export default function CareersPage() {
                             className="inline-flex items-center gap-2 text-[#00b4d8] hover:text-[#48cae4] transition-colors text-sm md:text-base font-medium"
                         >
                             <span className="w-5 h-5 rounded-full border border-[#00b4d8] flex items-center justify-center">
-                                <ChevronRight className="w-3 h-3" />
+                                <i className="ri-arrow-right-s-line text-sm"></i>
                             </span>
                             See career opportunities
                         </Link>
@@ -138,7 +138,7 @@ export default function CareersPage() {
                                     className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors"
                                     aria-label="Previous slide"
                                 >
-                                    <ChevronLeft className="w-5 h-5" />
+                                    <i className="ri-arrow-left-s-line text-xl"></i>
                                 </button>
                                 <span className="text-gray-400 text-sm min-w-[40px] text-center">
                                     {startIndex}–{endIndex}
@@ -148,7 +148,7 @@ export default function CareersPage() {
                                     className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors"
                                     aria-label="Next slide"
                                 >
-                                    <ChevronRight className="w-5 h-5" />
+                                    <i className="ri-arrow-right-s-line text-xl"></i>
                                 </button>
                             </div>
                         </div>
@@ -299,7 +299,7 @@ export default function CareersPage() {
                                 className="inline-flex items-center gap-2 text-[#007DCD] hover:text-[#006bb0] transition-colors text-sm md:text-base font-medium"
                             >
                                 <span className="w-5 h-5 rounded-full border border-[#007DCD] flex items-center justify-center">
-                                    <ChevronRight className="w-3 h-3" />
+                                    <i className="ri-arrow-right-s-line text-sm"></i>
                                 </span>
                                 Read more
                             </Link>
@@ -518,7 +518,7 @@ export default function CareersPage() {
                                                 className="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors rounded-md group"
                                             >
                                                 <span className="text-[#273441] text-sm md:text-base font-medium">{position}</span>
-                                                <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#007DCD] transition-colors" />
+                                                <i className="ri-arrow-right-s-line text-xl text-gray-400 group-hover:text-[#007DCD] transition-colors"></i>
                                             </Link>
                                         ))}
                                     </div>
@@ -557,7 +557,7 @@ export default function CareersPage() {
                                     disabled={recruitmentSlide === 0}
                                     aria-label="Previous slide"
                                 >
-                                    <ChevronLeft className="w-5 h-5" />
+                                    <i className="ri-arrow-left-s-line text-xl"></i>
                                 </button>
                                 <span className="text-gray-400 text-sm min-w-[40px] text-center">
                                     {recruitmentSlide + 1}–{Math.min(recruitmentSlide + 3, 10)}
@@ -568,7 +568,7 @@ export default function CareersPage() {
                                     disabled={recruitmentSlide >= 7}
                                     aria-label="Next slide"
                                 >
-                                    <ChevronRight className="w-5 h-5" />
+                                    <i className="ri-arrow-right-s-line text-xl"></i>
                                 </button>
                             </div>
                         </div>

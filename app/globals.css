@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Prime Font */
 @font-face {
   font-family: "Prime Font";
@@ -57,14 +61,6 @@ body {
     @apply border-2 border-[#007DCD] text-[#007DCD] rounded-full px-8 py-3 font-medium hover:bg-[#007DCD] hover:text-white transition-colors duration-300;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply text-[#fff];
-  }
 }
 
 /* Marquee Animation */

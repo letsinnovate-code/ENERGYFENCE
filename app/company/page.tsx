@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+// Remix Icons are loaded via CDN
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -29,7 +29,7 @@ export default function CompanyPage() {
 
                     <a href="#about" className="inline-flex items-center gap-2 text-[#0ea5e9] hover:text-[#38bdf8] transition-colors">
                         <div className="w-10 h-10 rounded-full bg-[#0ea5e9]/20 flex items-center justify-center">
-                            <ChevronDown className="w-5 h-5" />
+                            <i className="ri-arrow-down-s-line text-xl"></i>
                         </div>
                         <span className="font-medium">Learn more</span>
                     </a>
@@ -64,7 +64,7 @@ export default function CompanyPage() {
 
                     <div className="mt-12 flex justify-center">
                         <div className="w-12 h-12 rounded-full bg-[#0ea5e9]/10 flex items-center justify-center">
-                            <ChevronDown className="w-6 h-6 text-[#0ea5e9]" />
+                            <i className="ri-arrow-down-s-line text-2xl text-[#0ea5e9]"></i>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ export default function CompanyPage() {
                 {/* Scroll indicator */}
                 <div className="absolute bottom-8 right-8">
                     <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
-                        <ChevronDown className="w-6 h-6 text-gray-900" />
+                        <i className="ri-arrow-down-s-line text-2xl text-gray-900"></i>
                     </div>
                 </div>
             </section>
@@ -149,7 +149,7 @@ export default function CompanyPage() {
                                         <p className="text-sm text-gray-400">Our special sauce</p>
                                     </div>
                                     <div className={`w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center transition-transform ${expandedValue === 'grit' ? 'rotate-180' : ''}`}>
-                                        <ChevronDown className="w-5 h-5" />
+                                        <i className="ri-arrow-down-s-line text-xl"></i>
                                     </div>
                                 </button>
 
@@ -179,7 +179,7 @@ export default function CompanyPage() {
                                         <p className="text-sm text-gray-400">How we stand out</p>
                                     </div>
                                     <div className={`w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center transition-transform ${expandedValue === 'ingenuity' ? 'rotate-180' : ''}`}>
-                                        <ChevronDown className="w-5 h-5" />
+                                        <i className="ri-arrow-down-s-line text-xl"></i>
                                     </div>
                                 </button>
 
@@ -203,7 +203,7 @@ export default function CompanyPage() {
                                         <p className="text-sm text-gray-400">Our foundation</p>
                                     </div>
                                     <div className={`w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center transition-transform ${expandedValue === 'credibility' ? 'rotate-180' : ''}`}>
-                                        <ChevronDown className="w-5 h-5" />
+                                        <i className="ri-arrow-down-s-line text-xl"></i>
                                     </div>
                                 </button>
 
@@ -382,7 +382,7 @@ export default function CompanyPage() {
 
                     <div className="flex justify-center mb-12">
                         <div className="w-12 h-12 rounded-full bg-[#0ea5e9]/20 flex items-center justify-center">
-                            <ChevronDown className="w-6 h-6 text-[#0ea5e9]" />
+                            <i className="ri-arrow-down-s-line text-2xl text-[#0ea5e9]"></i>
                         </div>
                     </div>
 
@@ -447,7 +447,7 @@ export default function CompanyPage() {
             {/* Scroll to top button */}
             <div className="fixed bottom-8 left-8">
                 <button className="w-12 h-12 rounded-full bg-[#0ea5e9] text-white flex items-center justify-center shadow-lg hover:bg-[#38bdf8] transition-colors">
-                    <ChevronDown className="w-6 h-6 rotate-180" />
+                    <i className="ri-arrow-up-s-line text-2xl"></i>
                 </button>
             </div>
 

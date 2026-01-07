@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowRight, ChevronDown, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -31,7 +31,7 @@ export default function ContactPage() {
 
                         <div className="flex items-center gap-2 text-white/90 cursor-pointer hover:text-white transition-colors mt-8">
                             <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                                <ChevronDown className="w-5 h-5" />
+                                <i className="ri-arrow-down-s-line text-xl"></i>
                             </div>
                             <span className="font-medium text-sm tracking-wide">Learn more</span>
                         </div>
@@ -126,7 +126,7 @@ export default function ContactPage() {
                             </div>
                             <div className="z-10 flex justify-end mt-12">
                                 <button className="w-14 h-14 rounded-full bg-[#005B94] flex items-center justify-center hover:bg-[#0073C2] transition-colors group">
-                                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                                    <i className="ri-arrow-right-s-line text-2xl group-hover:translate-x-1 transition-transform"></i>
                                 </button>
                             </div>
                         </div>

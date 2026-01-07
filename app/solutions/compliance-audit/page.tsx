@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+// Remix Icons are loaded via CDN
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -33,7 +33,9 @@ export default function ComplianceAuditPage() {
                         The Platform Powering Railway Innovation
                     </p>
                     <button className="group flex items-center gap-2 mx-auto text-white hover:text-blue-400 transition-colors duration-300">
-                        <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
+                        <span className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:translate-y-1 transition-transform duration-300">
+                            <i className="ri-arrow-down-s-line text-lg"></i>
+                        </span>
                         <span className="text-lg">Learn more</span>
                     </button>
                 </div>
@@ -51,7 +53,7 @@ export default function ComplianceAuditPage() {
                         Infrastructure managers, OEMs, and tech firms struggle to turn data into decisions especially across domains.
                     </p>
                     <button className="w-12 h-12 rounded-full bg-blue-100 hover:bg-blue-200 transition-all duration-300 flex items-center justify-center mx-auto">
-                        <ChevronDown className="w-6 h-6 text-blue-500" />
+                        <i className="ri-arrow-down-s-line text-2xl text-blue-500"></i>
                     </button>
                 </div>
             </section>
@@ -118,7 +120,9 @@ export default function ComplianceAuditPage() {
                         <div className="space-y-12">
                             <div>
                                 <h3 className="text-2xl font-semibold mb-4 flex items-center gap-3">
-                                    <span className="text-blue-400">→</span>
+                                    <span className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                                        <i className="ri-arrow-right-s-line text-lg text-blue-400"></i>
+                                    </span>
                                     Curated Components That Save Time
                                 </h3>
                                 <p className="text-gray-300 leading-relaxed">
@@ -152,7 +156,7 @@ export default function ComplianceAuditPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
 
 
             {/* What it enables Section */}
@@ -248,9 +252,9 @@ export default function ComplianceAuditPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
             {/* KONUX CoBrix Closing Section */}
-            <section className="relative h-[400px] flex items-center justify-center overflow-hidden bg-black">
+            < section className="relative h-[400px] flex items-center justify-center overflow-hidden bg-black" >
                 <div className="absolute inset-0">
                     <img
                         src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1920&h=800&fit=crop"
@@ -268,12 +272,14 @@ export default function ComplianceAuditPage() {
                         the foundation for co-creating the future of rail.
                     </p>
                     <button className="group flex items-center gap-2 mx-auto text-gray-300 hover:text-white transition-colors duration-300">
-                        <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
+                        <span className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:translate-y-1 transition-transform duration-300">
+                            <i className="ri-arrow-down-s-line text-lg"></i>
+                        </span>
                     </button>
                 </div>
-            </section>
+            </section >
             {/* Proven Impact in the Field Section */}
-            <section className="relative py-24 px-6 bg-gradient-to-b from-black to-blue-900 overflow-hidden">
+            < section className="relative py-24 px-6 bg-gradient-to-b from-black to-blue-900 overflow-hidden" >
                 <div className="absolute inset-0 opacity-20">
                     <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full filter blur-3xl"></div>
                     <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl"></div>
@@ -290,7 +296,7 @@ export default function ComplianceAuditPage() {
                         View all case studies
                     </button>
                 </div>
-            </section>
+            </section >
 
 
 
@@ -299,6 +305,6 @@ export default function ComplianceAuditPage() {
 
 
 
-        </div>
+        </div >
     );
 }

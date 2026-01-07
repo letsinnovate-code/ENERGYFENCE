@@ -4,13 +4,9 @@ import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+
 export default function SolutionsPage() {
-    useEffect(() => {
-        document.body.style.backgroundColor = "#050A0F";
-        return () => {
-            document.body.style.backgroundColor = "";
-        };
-    }, []);
+
 
     return (
         <>
@@ -31,7 +27,7 @@ export default function SolutionsPage() {
 
                         <div className="inline-flex items-center gap-3 text-blue-500 hover:text-blue-400 transition cursor-pointer">
                             <span className="w-10 h-10 rounded-full border border-blue-500 flex items-center justify-center">
-                                →
+                                <i className="ri-arrow-right-s-line text-xl"></i>
                             </span>
                             Learn more
                         </div>
@@ -50,18 +46,18 @@ export default function SolutionsPage() {
                 {/* ================= VISION TEXT ================= */}
                 <section className="bg-white text-[#050A0F] py-32 px-6">
                     <div className="max-w-7xl mx-auto text-center">
-                        <p className="text-blue-600 font-medium mb-6">
+                        <p className="text-blue-600 font-semibold mb-6">
                             KONUX’s Vision of Collaboration:
                         </p>
 
-                        <h2 className="text-3xl md:text-4xl font-light  mb-10">
+                        <h2 className="text-2xl text-[#273441] max-w-5xl mx-auto md:text-3xl font-light  mb-10">
                             KONUX is building a rail-centric ecosystem that brings together deep
                             railway domain expertise, scalable modular technology building
                             blocks, and a network of partners to drive smarter infrastructure
                             decisions.
                         </h2>
 
-                        <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+                        <p className="text-lg text-gray-600 max-w-5xl mx-auto">
                             Instead of isolated products, we are building a collaborative
                             ecosystem where rail operators, technology providers, and KONUX
                             build solutions together — accelerating innovation and delivering
@@ -70,14 +66,14 @@ export default function SolutionsPage() {
 
                         <div className="mt-16 flex justify-center">
                             <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
-                                ↓
+                                <i className="ri-arrow-down-s-line text-2xl"></i>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* ================= SPLIT SECTION ================= */}
-                <section className="grid grid-cols-1 md:grid-cols-2 min-h-[80vh]">
+                <section className="grid grid-cols-1 max-w-7xl mx-auto md:grid-cols-2 min-h-[80vh]">
                     {/* LEFT */}
                     <div className="bg-[#050A0F] flex items-center justify-center">
                         <div className="relative w-[420px] h-[420px] rounded-full border border-blue-500 flex items-center justify-center text-xl">
@@ -126,7 +122,7 @@ export default function SolutionsPage() {
 
                     <div className="mt-14 flex justify-center">
                         <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center">
-                            ↓
+                            <i className="ri-arrow-down-s-line text-2xl"></i>
                         </div>
                     </div>
                 </section>
@@ -157,9 +153,9 @@ export default function SolutionsPage() {
                         ].map((card, i) => (
                             <div
                                 key={i}
-                                className="group relative bg-[#050A0F] overflow-hidden cursor-pointer"
+                                className="group relative  bg-[#050A0F] overflow-hidden cursor-pointer"
                             >
-                                <div className="h-[320px] overflow-hidden">
+                                <div className="h-[600px] overflow-hidden">
                                     <img
                                         src={card.img}
                                         className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
@@ -176,7 +172,7 @@ export default function SolutionsPage() {
                                     </p>
 
                                     <div className="w-12 h-12 rounded-full bg-[#1A1F24] flex items-center justify-center group-hover:bg-blue-600 transition">
-                                        →
+                                        <i className="ri-arrow-right-s-line text-2xl"></i>
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +202,7 @@ export default function SolutionsPage() {
                 </section>
 
                 {/* ================= ECOSYSTEM GRID ================= */}
-                <section className="grid grid-cols-1 md:grid-cols-2">
+                <section className="grid max-w-7xl bg-white mb-16 mx-auto gap-2 grid-cols-1 md:grid-cols-2">
                     {/* 01: Ecosystem Benefits */}
                     <div className="bg-[#E5E7EB] text-[#050A0F] p-12 md:p-20 flex flex-col justify-between min-h-[500px]">
                         <span className="text-sm font-medium text-gray-500">01</span>
@@ -254,8 +250,8 @@ export default function SolutionsPage() {
                                 focused applications without building their own platform.
                             </p>
                             <div className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition cursor-pointer font-medium">
-                                <span className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-xs">
-                                    →
+                                <span className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center">
+                                    <i className="ri-arrow-right-s-line text-sm"></i>
                                 </span>
                                 Learn more
                             </div>

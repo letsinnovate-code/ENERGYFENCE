@@ -108,44 +108,7 @@ const BLOG_POSTS: BlogPost[] = [
 
 // --- Components ---
 
-const ArrowIcon = ({ className }: { className?: string }) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className={className}
-    >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-    </svg>
-);
-
-const UpArrowIcon = ({ className }: { className?: string }) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className={className}
-    >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
-    </svg>
-);
-
-const ChevronDownIcon = ({ className }: { className?: string }) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className={className}
-    >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-    </svg>
-);
+// Arrow icons now use Remix Icons via CDN
 
 export default function BlogPage() {
     const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
@@ -199,7 +162,7 @@ export default function BlogPage() {
                         className="inline-flex items-center gap-2 text-[#00B2FF] font-bold text-base hover:opacity-80 transition-opacity"
                     >
                         <div className="w-8 h-8 rounded-full bg-[#E0F4FF] flex items-center justify-center">
-                            <ArrowIcon className="w-4 h-4 text-[#00B2FF]" />
+                            <i className="ri-arrow-right-s-line text-lg text-[#00B2FF]"></i>
                         </div>
                         Learn more
                     </Link>
@@ -212,7 +175,7 @@ export default function BlogPage() {
                 <div className="flex justify-center mb-16 relative z-30">
                     <button className="flex items-center gap-3 px-6 py-3 bg-[#Eef2f6] hover:bg-[#E3E8ED] rounded-full text-slate-700 text-sm font-bold transition-colors">
                         All Categories (5)
-                        <ChevronDownIcon className="w-4 h-4 text-slate-500" />
+                        <i className="ri-arrow-down-s-line text-lg text-slate-500"></i>
                     </button>
                 </div>
 
@@ -256,8 +219,8 @@ export default function BlogPage() {
                                     {/* Arrow Button */}
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ${hoveredCardId === post.id ? "bg-[#0092D8]" : "bg-[#Eef2f6]"
                                         }`}>
-                                        <ArrowIcon className={`w-4 h-4 transition-colors duration-300 ${hoveredCardId === post.id ? "text-white" : "text-slate-500"
-                                            }`} />
+                                        <i className={`ri-arrow-right-s-line text-lg transition-colors duration-300 ${hoveredCardId === post.id ? "text-white" : "text-slate-500"
+                                            }`}></i>
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +245,7 @@ export default function BlogPage() {
                     >
                         Back to top
                         <div className="w-6 h-6 rounded-full bg-[#Eef2f6] flex items-center justify-center">
-                            <UpArrowIcon className="w-3 h-3 text-slate-500" />
+                            <i className="ri-arrow-up-s-line text-sm text-slate-500"></i>
                         </div>
                     </button>
                 </div>

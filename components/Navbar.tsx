@@ -213,7 +213,7 @@ export default function Navbar() {
                 />
                 <div className="absolute bottom-6 left-6 flex items-center gap-3 text-white text-sm font-medium">
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
-                    →
+                    <i className="ri-arrow-right-s-line text-xl"></i>
                   </span>
                   Learn about careers at KONUX
                 </div>

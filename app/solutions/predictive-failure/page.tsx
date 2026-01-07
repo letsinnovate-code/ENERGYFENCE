@@ -125,7 +125,7 @@ export default function PredictiveFailurePage() {
             <section className="relative bg-[#0a0a14] pt-40 pb-24">
                 <div className="max-w-4xl mx-auto px-6 text-center">
                     {/* Main Heading */}
-                    <h1 className="text-4xl md:text-5xl lg:text-[56px] font-normal text-white mb-6 tracking-tight">
+                    <h1 className="text-3xl md:text-3xl lg:text-[46px] font-normal text-white mb-6 tracking-tight">
                         Case Studies
                     </h1>
 
@@ -161,7 +161,7 @@ export default function PredictiveFailurePage() {
                                     <img
                                         src={study.image}
                                         alt={study.title}
-                                        className="w-full h-56 md:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                                        className="w-full h-56 md:h-95 object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
                                     {/* Subtle overlay on hover */}
                                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
