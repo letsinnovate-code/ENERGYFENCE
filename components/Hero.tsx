@@ -1,5 +1,7 @@
 "use client";
 
+
+
 export default function Hero() {
   const partners = [
     "FERROVIENORD GROUP",
@@ -35,7 +37,7 @@ export default function Hero() {
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 sm:pt-24 flex-1 flex items-start">
         {/* Our solutions link - Top right corner */}
         <a
-          href="#solutions"
+          href="/solutions"
           className="absolute top-20 sm:top-24 right-4 sm:right-6 lg:right-8 text-xs sm:text-sm hover:underline opacity-90 z-30"
           style={{
             color: "#FFFFFF",

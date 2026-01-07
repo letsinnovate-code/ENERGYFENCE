@@ -9,6 +9,7 @@ import AcceleratingSection from "@/components/AcceleratingSection";
 import WorkTogetherSection from "@/components/WorkTogetherSection";
 import Footer from "@/components/Footer";
 
+
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -21,6 +22,7 @@ export default function Home() {
       <ImageSection />
       <AcceleratingSection />
       <WorkTogetherSection />
+
       <Footer />
     </div>
   );

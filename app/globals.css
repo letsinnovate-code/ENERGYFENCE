@@ -13,12 +13,22 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #5A6774;
+  /* Body Text: Muted Gray-Blue */
+  --primary: #007DCD;
+  /* Konux Blue */
+  --heading: #273441;
+  /* Headings: Dark Slate */
+  --bg-light: #F7F7F7;
+  /* Light Gray backgrounds */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-heading: var(--heading);
+  --color-bg-light: var(--bg-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-prime: "Prime Font", sans-serif;
@@ -37,11 +47,32 @@ body {
   font-family: var(--font-prime), Arial, Helvetica, sans-serif;
 }
 
+/* Global Component Styles */
+@layer components {
+  .btn-primary {
+    @apply bg-[#007DCD] text-white rounded-full px-8 py-3 font-medium hover:bg-[#006bb0] transition-colors duration-300 shadow-sm hover:shadow-md;
+  }
+
+  .btn-outline {
+    @apply border-2 border-[#007DCD] text-[#007DCD] rounded-full px-8 py-3 font-medium hover:bg-[#007DCD] hover:text-white transition-colors duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-[#273441];
+  }
+}
+
 /* Marquee Animation */
 @keyframes marquee {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -51,4 +82,20 @@ body {
   animation: marquee 20s linear infinite;
   display: flex;
   width: fit-content;
+}
+
+@keyframes mega {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-mega {
+  animation: mega 0.25s ease-out forwards;
 }

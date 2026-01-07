@@ -1,599 +1,264 @@
+
+
+
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
+type SubItem = {
+  label: string;
+  href: string;
+};
+
+type MenuItem = {
+  label: string;
+  href: string;
+  subItems: SubItem[];
+};
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
+    null
+  );
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const menuItems = {
+  const menuItems: Record<string, MenuItem> = {
+    home: { label: "Home", href: "/", subItems: [] },
     solutions: {
       label: "Solutions",
-      href: "#solutions",
+      href: "/solutions",
       subItems: [
-        { label: "Solutions", href: "#solutions" },
-        { label: "KONUX Switch", href: "#konux-switch" },
-        { label: "KONUX CoBrix", href: "#konux-cobrix" },
-        { label: "IoT Devices for Rail", href: "#iot-devices" },
-        { label: "Case Studies", href: "#case-studies" },
+        { label: "Command Control & Safety", href: "/solutions/command-control-safety" },
+        { label: "Predictive Failure Intelligence", href: "/solutions/predictive-failure" },
+        { label: "Digital Twin & Simulation", href: "/solutions/digital-twin" },
+        { label: "Compliance & Audit Automation", href: "/solutions/compliance-audit" },
       ],
     },
-    company: {
-      label: "Company",
-      href: "#company",
+    technology: {
+      label: "Technology",
+      href: "/technology",
       subItems: [
-        { label: "Company", href: "#company" },
-        { label: "Contact", href: "#contact" },
-        { label: "Partnership", href: "#partnership" },
-        { label: "About", href: "#about" },
+        { label: "System Architecture", href: "/technology/system-architecture" },
+        { label: "Edge AI Agent", href: "/technology/edge-ai-agent" },
+        { label: "Command Gateway", href: "/technology/command-gateway" },
+        { label: "Physics-Informed AI", href: "/technology/physics-informed-ai" },
+        { label: "Digital Twin Engine", href: "/technology/digital-twin-engine" },
+        { label: "Central AI Brain", href: "/technology/central-ai-brain" },
       ],
     },
-    careers: {
-      label: "Careers",
-      href: "#careers",
+    useCases: {
+      label: "Use Cases",
+      href: "/use-cases",
       subItems: [
-        { label: "Life at KONUX", href: "#life-at-konux" },
-        { label: "Our Tech Stack", href: "#tech-stack" },
-        { label: "Open Positions", href: "#open-positions" },
-        { label: "Recruitment Process", href: "#recruitment" },
+        { label: "EV Charging Networks", href: "/use-cases/ev-charging" },
+        { label: "Solar & Battery Plants", href: "/use-cases/solar-battery" },
+        { label: "Industrial Manufacturing", href: "/use-cases/industrial-manufacturing" },
+        { label: "Grid Operations", href: "/use-cases/grid-operations" },
       ],
     },
     resources: {
       label: "Resources",
-      href: "#resources",
+      href: "/resources",
       subItems: [
-        { label: "Blog", href: "#blog" },
-        { label: "Media Kit", href: "#media-kit" },
-        { label: "Privacy Policy", href: "#privacy" },
+        { label: "Whitepapers", href: "/resources/whitepapers" },
+        { label: "Case Studies", href: "/resources/case-studies" },
+        { label: "Blog", href: "/resources/blog" },
+      ],
+    },
+    company: {
+      label: "Company",
+      href: "/company",
+      subItems: [
+        { label: "About", href: "/company/about" },
+        { label: "Leadership", href: "/company/leadership" },
+        { label: "Careers", href: "/company/careers" },
+        { label: "Press", href: "/company/press" },
       ],
     },
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    // Close mobile menu when clicking outside
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+  const handleMouseEnter = (key: string) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMobileMenuOpen]);
+    setOpenDropdown(key);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 200);
+  };
+
+  const activeItem =
+    openDropdown && menuItems[openDropdown as keyof typeof menuItems];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-md"
-          : "bg-transparent backdrop-blur-sm bg-black/20"
-      }`}
-      style={{
-        backgroundColor: isScrolled ? undefined : "rgba(5, 10, 15, 0.08)",
-        color: isScrolled ? undefined : "#FFFFFF",
-        padding: "12px 0",
-        fontFamily: "proxima-nova, sans-serif",
-        fontSize: "clamp(12px, 2vw, 14px)",
-        height: "60.8px"
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-full">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded"></div>
-          </div>
+      {/* NAV BAR */}
+      <div className="mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
+        {/* LOGO */}
+        <div className="w-8 h-8 bg-white rounded" />
 
-          {/* Navigation Links - Desktop */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {/* Solutions Dropdown */}
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex gap-10 text-sm font-medium">
+          {Object.entries(menuItems).map(([key, item]) => (
             <div
+              key={key}
               className="relative"
-              onMouseEnter={() => setOpenDropdown("solutions")}
-              onMouseLeave={() => setOpenDropdown(null)}
+              onMouseEnter={() => handleMouseEnter(key)}
+              onMouseLeave={handleMouseLeave}
             >
               <a
-                href={menuItems.solutions.href}
-                className={`transition-colors flex items-center gap-1 ${
-                  isScrolled
-                    ? "text-gray-900 hover:text-gray-700"
-                    : "hover:opacity-80"
-                }`}
-                style={!isScrolled ? { color: "#FFFFFF" } : undefined}
+                href={item.href}
+                className={`transition font-medium text-[15px] ${isScrolled ? "text-[#273441] hover:text-[#007DCD]" : "text-white hover:text-white/80"
+                  }`}
               >
-                {menuItems.solutions.label}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
+                {item.label}
               </a>
-              {openDropdown === "solutions" && (
-                <div
-                  className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg py-2 z-50"
-                  style={{ backgroundColor: isScrolled ? "#FFFFFF" : "rgba(255, 255, 255, 0.95)" }}
-                >
-                  {menuItems.solutions.subItems.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.href}
-                      className="block px-4 py-2 text-gray-900 hover:bg-gray-100 transition-colors"
-                      style={{
-                        fontFamily: "proxima-nova, sans-serif",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              )}
             </div>
+          ))}
 
-            {/* Company Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("company")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <a
-                href={menuItems.company.href}
-                className={`transition-colors flex items-center gap-1 ${
-                  isScrolled
-                    ? "text-gray-900 hover:text-gray-700"
-                    : "hover:opacity-80"
-                }`}
-                style={!isScrolled ? { color: "#FFFFFF" } : undefined}
-              >
-                {menuItems.company.label}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </a>
-              {openDropdown === "company" && (
-                <div
-                  className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg py-2 z-50"
-                  style={{ backgroundColor: isScrolled ? "#FFFFFF" : "rgba(255, 255, 255, 0.95)" }}
-                >
-                  {menuItems.company.subItems.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.href}
-                      className="block px-4 py-2 text-gray-900 hover:bg-gray-100 transition-colors"
-                      style={{
-                        fontFamily: "proxima-nova, sans-serif",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Careers Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("careers")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <a
-                href={menuItems.careers.href}
-                className={`transition-colors flex items-center gap-1 ${
-                  isScrolled
-                    ? "text-gray-900 hover:text-gray-700"
-                    : "hover:opacity-80"
-                }`}
-                style={!isScrolled ? { color: "#FFFFFF" } : undefined}
-              >
-                {menuItems.careers.label}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </a>
-              {openDropdown === "careers" && (
-                <div
-                  className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg py-2 z-50"
-                  style={{ backgroundColor: isScrolled ? "#FFFFFF" : "rgba(255, 255, 255, 0.95)" }}
-                >
-                  {menuItems.careers.subItems.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.href}
-                      className="block px-4 py-2 text-gray-900 hover:bg-gray-100 transition-colors"
-                      style={{
-                        fontFamily: "proxima-nova, sans-serif",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Resources Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("resources")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <a
-                href={menuItems.resources.href}
-                className={`transition-colors flex items-center gap-1 ${
-                  isScrolled
-                    ? "text-gray-900 hover:text-gray-700"
-                    : "hover:opacity-80"
-                }`}
-                style={!isScrolled ? { color: "#FFFFFF" } : undefined}
-              >
-                {menuItems.resources.label}
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </a>
-              {openDropdown === "resources" && (
-                <div
-                  className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg py-2 z-50"
-                  style={{ backgroundColor: isScrolled ? "#FFFFFF" : "rgba(255, 255, 255, 0.95)" }}
-                >
-                  {menuItems.resources.subItems.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.href}
-                      className="block px-4 py-2 text-gray-900 hover:bg-gray-100 transition-colors"
-                      style={{
-                        fontFamily: "proxima-nova, sans-serif",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Contact - No Dropdown */}
-            <a
-              href="#contact"
-              className={`transition-colors ${
-                isScrolled
-                  ? "text-gray-900 hover:text-gray-700"
-                  : "hover:opacity-80"
+          <a
+            className={`transition font-medium text-[15px] ${isScrolled ? "text-[#273441] hover:text-[#007DCD]" : "text-white hover:text-white/80"
               }`}
-              style={!isScrolled ? { color: "#FFFFFF" } : undefined}
-            >
-              Contact
-            </a>
-          </div>
-
-          {/* CTA Button - Desktop */}
-          <button
-            className="hidden md:block transition-all duration-300 hover:opacity-90"
-            style={{
-              backgroundColor: "#050A0F",
-              color: "#FFFFFF",
-              fontFamily: "proxima-nova, sans-serif",
-              fontSize: "clamp(11px, 1.5vw, 12px)",
-              padding: "8px 16px",
-              height: "36px",
-              border: "none",
-              cursor: "pointer"
-            }}
+            href="/contact"
           >
-            Get started
-          </button>
+            Contact
+          </a>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 transition-all duration-300 hover:opacity-80"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-            style={!isScrolled ? { color: "#FFFFFF" } : { color: "#171717" }}
-          >
-            {isMobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t border-gray-200 max-h-[90vh] overflow-y-auto">
-            <div className="px-4 py-4 space-y-2">
-              {/* Solutions Mobile */}
-              <div>
-                <button
-                  onClick={() =>
-                    setOpenMobileDropdown(
-                      openMobileDropdown === "solutions" ? null : "solutions"
-                    )
-                  }
-                  className="w-full flex items-center justify-between py-2 text-gray-900 hover:text-gray-700 transition-colors"
-                  style={{
-                    fontFamily: "proxima-nova, sans-serif",
-                    fontSize: "13px",
-                  }}
-                >
-                  {menuItems.solutions.label}
-                  <svg
-                    className={`w-4 h-4 transition-transform ${
-                      openMobileDropdown === "solutions" ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                {openMobileDropdown === "solutions" && (
-                  <div className="pl-4 space-y-1">
-                    {menuItems.solutions.subItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block py-1.5 text-gray-600 hover:text-gray-900 transition-colors"
-                        style={{
-                          fontFamily: "proxima-nova, sans-serif",
-                          fontSize: "12px",
-                        }}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </a>
+        <button
+          className={`${isScrolled ? "bg-[#007DCD] text-white hover:bg-[#006bb0]" : "bg-black text-white "
+            } rounded-full px-6 py-2 text-[14px] font-bold transition-colors cursor-pointer duration-300 shadow-sm`}
+        >
+          Get started
+        </button>
+
+
+
+
+        {/* MOBILE TOGGLE */}
+        <button
+          className={`md:hidden ${isScrolled ? "text-[#273441]" : "text-white"}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* MEGA DROPDOWN (DESKTOP) */}
+      {
+        activeItem && activeItem.subItems.length > 0 && (
+          <div
+            className="absolute left-0 w-screen bg-white border-t shadow-xl animate-mega"
+            style={{ top: "60px" }}
+            onMouseEnter={() => {
+              if (closeTimeoutRef.current) {
+                clearTimeout(closeTimeoutRef.current);
+                closeTimeoutRef.current = null;
+              }
+            }}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="mx-auto max-w-7xl px-20 py-16 grid grid-cols-2 gap-20">
+              {/* LEFT */}
+              <div className="flex flex-col justify-between">
+                <div>
+                  <p className="text-sm text-gray-500 mb-8">
+                    {activeItem.label}
+                  </p>
+
+                  <ul className="space-y-5 text-lg text-gray-700 font-medium">
+                    {activeItem.subItems.map((sub) => (
+                      <li key={sub.label}>
+                        <a href={sub.href} className="hover:text-black">
+                          {sub.label}
+                        </a>
+                      </li>
                     ))}
-                  </div>
-                )}
+                  </ul>
+                </div>
+
+                <button className="mt-16 w-fit rounded-full bg-blue-600 px-8 py-4 text-sm font-semibold text-white hover:bg-blue-700">
+                  Contact us
+                </button>
               </div>
 
-              {/* Company Mobile */}
-              <div>
-                <button
-                  onClick={() =>
-                    setOpenMobileDropdown(
-                      openMobileDropdown === "company" ? null : "company"
-                    )
-                  }
-                  className="w-full flex items-center justify-between py-2 text-gray-900 hover:text-gray-700 transition-colors"
-                  style={{
-                    fontFamily: "proxima-nova, sans-serif",
-                    fontSize: "13px",
-                  }}
-                >
-                  {menuItems.company.label}
-                  <svg
-                    className={`w-4 h-4 transition-transform ${
-                      openMobileDropdown === "company" ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                {openMobileDropdown === "company" && (
-                  <div className="pl-4 space-y-1">
-                    {menuItems.company.subItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block py-1.5 text-gray-600 hover:text-gray-900 transition-colors"
-                        style={{
-                          fontFamily: "proxima-nova, sans-serif",
-                          fontSize: "12px",
-                        }}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
+              {/* RIGHT IMAGE */}
+              <div className="relative h-[420px]  overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  alt=""
+                />
+                <div className="absolute bottom-6 left-6 flex items-center gap-3 text-white text-sm font-medium">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
+                    →
+                  </span>
+                  Learn about careers at KONUX
+                </div>
               </div>
-
-              {/* Careers Mobile */}
-              <div>
-                <button
-                  onClick={() =>
-                    setOpenMobileDropdown(
-                      openMobileDropdown === "careers" ? null : "careers"
-                    )
-                  }
-                  className="w-full flex items-center justify-between py-2 text-gray-900 hover:text-gray-700 transition-colors"
-                  style={{
-                    fontFamily: "proxima-nova, sans-serif",
-                    fontSize: "13px",
-                  }}
-                >
-                  {menuItems.careers.label}
-                  <svg
-                    className={`w-4 h-4 transition-transform ${
-                      openMobileDropdown === "careers" ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                {openMobileDropdown === "careers" && (
-                  <div className="pl-4 space-y-1">
-                    {menuItems.careers.subItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block py-1.5 text-gray-600 hover:text-gray-900 transition-colors"
-                        style={{
-                          fontFamily: "proxima-nova, sans-serif",
-                          fontSize: "12px",
-                        }}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Resources Mobile */}
-              <div>
-                <button
-                  onClick={() =>
-                    setOpenMobileDropdown(
-                      openMobileDropdown === "resources" ? null : "resources"
-                    )
-                  }
-                  className="w-full flex items-center justify-between py-2 text-gray-900 hover:text-gray-700 transition-colors"
-                  style={{
-                    fontFamily: "proxima-nova, sans-serif",
-                    fontSize: "13px",
-                  }}
-                >
-                  {menuItems.resources.label}
-                  <svg
-                    className={`w-4 h-4 transition-transform ${
-                      openMobileDropdown === "resources" ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                {openMobileDropdown === "resources" && (
-                  <div className="pl-4 space-y-1">
-                    {menuItems.resources.subItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block py-1.5 text-gray-600 hover:text-gray-900 transition-colors"
-                        style={{
-                          fontFamily: "proxima-nova, sans-serif",
-                          fontSize: "12px",
-                        }}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Contact Mobile */}
-              <a
-                href="#contact"
-                className="block py-2 text-gray-900 hover:text-gray-700 transition-colors"
-                style={{
-                  fontFamily: "proxima-nova, sans-serif",
-                  fontSize: "13px",
-                }}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Contact
-              </a>
-
-              <button
-                className="w-full mt-4 py-2 text-white transition-all duration-300 hover:opacity-90"
-                style={{
-                  backgroundColor: "#050A0F",
-                  fontFamily: "proxima-nova, sans-serif",
-                  fontSize: "11px",
-                  border: "none",
-                  cursor: "pointer"
-                }}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Get started
-              </button>
             </div>
           </div>
-        )}
-      </div>
-    </nav>
+        )
+      }
+
+      {/* MOBILE MENU */}
+      {
+        isMobileMenuOpen && (
+          <div className="md:hidden bg-white border-t shadow-lg">
+            {Object.entries(menuItems).map(([key, item]) => (
+              <div key={key}>
+                <button
+                  className="w-full flex justify-between px-4 py-3 text-sm"
+                  onClick={() =>
+                    setOpenMobileDropdown(
+                      openMobileDropdown === key ? null : key
+                    )
+                  }
+                >
+                  {item.label}
+                  {item.subItems.length > 0 && "▾"}
+                </button>
+
+                {openMobileDropdown === key &&
+                  item.subItems.map((sub) => (
+                    <a
+                      key={sub.label}
+                      href={sub.href}
+                      className="block px-6 py-2 text-xs text-gray-600"
+                    >
+                      {sub.label}
+                    </a>
+                  ))}
+              </div>
+            ))}
+          </div>
+        )
+      }
+
+
+
+    </nav >
   );
 }
-
