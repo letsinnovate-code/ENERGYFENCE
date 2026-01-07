@@ -51,7 +51,7 @@ export default function Hero() {
           {/* Left Side - Main Text */}
           <div className="text-white flex flex-col justify-center pt-8 sm:pt-0">
             <h1
-              className="mb-4 sm:mb-6"
+              className="mb-4 text-white sm:mb-6"
               style={{
                 fontSize: "clamp(20px, 5vw, 36px)",
                 lineHeight: "clamp(24px, 6vw, 42px)",
