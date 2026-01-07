@@ -50,7 +50,7 @@ export default function TestimonialsSection() {
     <section className="relative bg-white py-12 sm:py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 lg:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mb-12 sm:mb-16 lg:mb-24">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="flex flex-col">
               {/* Profile Image, Logo, and Link */}
